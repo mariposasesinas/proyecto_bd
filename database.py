@@ -63,6 +63,11 @@ def iniciar_sesion(email, password):
             conexion.close()
 
 def actualizar_contrasena(email, nueva_contrasena):
+    # Verificar que los campos no sean nulos o vacíos
+    if not email or not nueva_contrasena:
+        print("Error: El correo electrónico y la nueva contraseña no pueden estar vacíos.")
+        return False
+
     conexion = conectar_base_datos()
     if conexion:
         try:
@@ -75,6 +80,7 @@ def actualizar_contrasena(email, nueva_contrasena):
                 conexion.commit()
                 return True
             else:
+                print("Error: El correo electrónico no existe.")
                 return False
         except Error as e:
             print(f"Error al actualizar la contraseña: {e}")
@@ -82,4 +88,5 @@ def actualizar_contrasena(email, nueva_contrasena):
         finally:
             conexion.close()
     return False
+
 

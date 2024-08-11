@@ -14,17 +14,21 @@ class FormularioRecuperarContrasena(tk.Toplevel):
         # Ajustar la ventana para que ocupe toda la pantalla
         self.geometry(f"{ancho_pantalla}x{alto_pantalla}+0+0")
 
+        # Establecer fondo
+        self.configure(bg='#ffffff')
 
-        tk.Label(self, text="Correo electrónico", font=('Arial', 14)).pack(pady=10)
-        self.email_entry = tk.Entry(self, font=('Arial', 14))
+        tk.Label(self, text="Recuperar contraseña", font=('Times', 40), fg="#666a88", bg='#ffffff').pack(pady=15)
+
+        tk.Label(self, text="Correo electrónico", font=('Times', 20), fg="#666a88", bg='#ffffff').pack(pady=10)
+        self.email_entry = tk.Entry(self, font=('Times', 20))
         self.email_entry.pack(pady=10)
 
-        tk.Label(self, text="Nueva contraseña", font=('Arial', 14)).pack(pady=10)
-        self.contrasena_entry = tk.Entry(self, font=('Arial', 14), show='*')
+        tk.Label(self, text="Nueva contraseña", font=('Times', 20), fg="#666a88", bg='#ffffff').pack(pady=10)
+        self.contrasena_entry = tk.Entry(self, font=('Times', 20), show='*')
         self.contrasena_entry.pack(pady=10)
 
-        tk.Button(self, text="Actualizar contraseña", font=('Arial', 14), command=self.recuperar_contrasena).pack(pady=20)
-        tk.Button(self, text="Volver", command=self.volver).pack(pady=10)
+        tk.Button(self, text="Actualizar contraseña", font=('Times', 20), bg='#3a7ff6', fg='#fff', width=15, command=self.recuperar_contrasena).pack(pady=10)
+        tk.Button(self, text="Volver", font=('Times', 20), bg='#3a7ff6', fg='#fff', width=15, command=self.volver).pack(pady=10)
 
     def recuperar_contrasena(self):
         email = self.email_entry.get()
@@ -43,4 +47,3 @@ class FormularioRecuperarContrasena(tk.Toplevel):
 if __name__ == "__main__":
     app = FormularioRecuperarContrasena()
     app.mainloop()
-

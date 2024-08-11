@@ -42,20 +42,21 @@ class VentanaPrincipal(tk.Tk):
             print("No se pudo cargar la imagen del logo.")
 
         # Crear el frame principal para el contenido, ocupando la mitad derecha de la pantalla
-        frame_form = tk.Frame(self, bd=0, relief=tk.SOLID, bg='#fcfcfc')
+        frame_form = tk.Frame(self, bd=0, relief=tk.SOLID, bg='#ffffff')
         frame_form.grid(row=0, column=1, sticky="nsew")  # Ocupa la columna 1
 
         # Crear un frame para centrar el título y los botones
-        frame_center = tk.Frame(frame_form, bg='#fcfcfc')
+        frame_center = tk.Frame(frame_form, bg='#ffffff')
         frame_center.place(relx=0.5, rely=0.5, anchor="center")  # Coloca el frame en el centro de frame_form
 
         # Crear el título "Inicio"
-        title = tk.Label(frame_center, text="Inicio", font=('Times', 40), fg="#666a88", bg='#fcfcfc')  # Tamaño de la fuente reducido
+        title = tk.Label(frame_center, text="Inicio", font=('Times', 40), fg="#666a88", bg='#ffffff')  # Tamaño de la fuente reducido
         title.pack(pady=20)
 
         # Añadir los botones "Iniciar Sesión" y "Registrar" al frame_center
-        tk.Button(frame_center, text="Iniciar Sesión", font=('Times', 20), bg='#3a7ff6', fg='#fff', width=15, command=self.abrir_login).pack(pady=15)
-        tk.Button(frame_center, text="Registrar", font=('Times', 20), bg='#3a7ff6', fg='#fff', width=15, command=self.abrir_registro).pack(pady=15)
+        tk.Button(frame_center, text="Iniciar Sesión", font=('Times', 20), bg='#3a7ff6', fg='#fff', width=15, padx=10, pady=5, borderwidth=2, relief='raised', command=self.abrir_login).pack(pady=15)
+        tk.Button(frame_center, text="Registrar", font=('Times', 20), bg='#3a7ff6', fg='#fff', width=15, padx=10, pady=5, borderwidth=2, relief='raised', command=self.abrir_registro).pack(pady=15)
+        
 
     def abrir_login(self):
         self.withdraw()
@@ -70,3 +71,4 @@ class VentanaPrincipal(tk.Tk):
 if __name__ == "__main__":
     app = VentanaPrincipal()
     app.mainloop()
+
