@@ -1,34 +1,47 @@
-import tkinter as tk
+import customtkinter as ctk
 from tkinter import messagebox
 from database import actualizar_contrasena
 
-class FormularioRecuperarContrasena(tk.Toplevel):
+class FormularioRecuperarContrasena(ctk.CTkToplevel):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.parent = parent
         self.title("Recuperar Contraseña")
-        
+
+        # Establecer tema del sistema
+        ctk.set_appearance_mode("system")  # Esto hace que el color se adapte al sistema operativo
+        ctk.set_default_color_theme("blue")  # Puede ser cambiado a otro tema (dark-blue, green, etc.)
+
         # Obtener las dimensiones de la pantalla
         ancho_pantalla = self.winfo_screenwidth()
         alto_pantalla = self.winfo_screenheight()
         # Ajustar la ventana para que ocupe toda la pantalla
         self.geometry(f"{ancho_pantalla}x{alto_pantalla}+0+0")
 
-        # Establecer fondo
-        self.configure(bg='#ffffff')
+        # Crear el marco principal
+        main_frame = ctk.CTkFrame(self)
+        main_frame.pack(expand=True, fill='both')
 
-        tk.Label(self, text="Recuperar contraseña", font=('Times', 40), fg="#666a88", bg='#ffffff').pack(pady=15)
+        # Crear un frame para centrar el contenido
+        content_frame = ctk.CTkFrame(main_frame)
+        content_frame.pack(expand=True, pady=20, fill='both')  # Añadir relleno y expansión
 
-        tk.Label(self, text="Correo electrónico", font=('Times', 20), fg="#666a88", bg='#ffffff').pack(pady=10)
-        self.email_entry = tk.Entry(self, font=('Times', 20))
+        # Título
+        ctk.CTkLabel(content_frame, text="Recuperar contraseña", font=('Times', 40)).pack(pady=15)
+
+        # Correo electrónico
+        ctk.CTkLabel(content_frame, text="Correo electrónico", font=('Times', 20)).pack(pady=10)
+        self.email_entry = ctk.CTkEntry(content_frame, font=('Times', 20))
         self.email_entry.pack(pady=10)
 
-        tk.Label(self, text="Nueva contraseña", font=('Times', 20), fg="#666a88", bg='#ffffff').pack(pady=10)
-        self.contrasena_entry = tk.Entry(self, font=('Times', 20), show='*')
+        # Nueva contraseña
+        ctk.CTkLabel(content_frame, text="Nueva contraseña", font=('Times', 20)).pack(pady=10)
+        self.contrasena_entry = ctk.CTkEntry(content_frame, font=('Times', 20), show='*')
         self.contrasena_entry.pack(pady=10)
 
-        tk.Button(self, text="Actualizar contraseña", font=('Times', 20), bg='#3a7ff6', fg='#fff', width=15, command=self.recuperar_contrasena).pack(pady=10)
-        tk.Button(self, text="Volver", font=('Times', 20), bg='#3a7ff6', fg='#fff', width=15, command=self.volver).pack(pady=10)
+        # Botones
+        ctk.CTkButton(content_frame, text="Actualizar contraseña", font=('Times', 20), width=200, command=self.recuperar_contrasena).pack(pady=10)
+        ctk.CTkButton(content_frame, text="Volver", font=('Times', 20), width=200, command=self.volver).pack(pady=10)
 
     def recuperar_contrasena(self):
         email = self.email_entry.get()
